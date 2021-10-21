@@ -38,6 +38,7 @@ const checkRootUser = async () => {
     const user = new User({
       username: "root",
       password: "123",
+      roles: ['root']
     });
     await user.save(() => console.log("root user is created"));
   }

@@ -10,12 +10,15 @@ const UserSchema = mongoose.Schema(
     password: {
       type: String,
       required: true
+    },
+    roles: {
+      type: [String],
+      required: true
     }
   }
 )
 
 UserSchema.pre('save', function(next) {
-  console.log(this)
   if (!this.isModified('password')) {
     console.log('same pass')
     return next()

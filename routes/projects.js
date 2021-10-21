@@ -12,7 +12,12 @@ router.use((req, res, next) => {
 
 router.get('/', async (req,res)=>{
   const users = await User.find()
-  res.render('projects', {user: req.session.user.username, users: users.map(user=>user.username)})
+  res.render('projects', {
+    user: {
+      username: req.session.user.username,
+      roles: req.session.user.roles
+    }, users: users.map(user=>user.username)
+  })
 })
 
 module.exports = router
