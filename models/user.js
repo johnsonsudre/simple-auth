@@ -15,7 +15,9 @@ const UserSchema = mongoose.Schema(
 )
 
 UserSchema.pre('save', function(next) {
+  console.log(this)
   if (!this.isModified('password')) {
+    console.log('same pass')
     return next()
   }
   bcrypt.genSalt(async (err,salt)=>{
@@ -29,7 +31,6 @@ UserSchema.pre('save', function(next) {
 UserSchema.methods.checkAppUser = function(password) {
   return new Promise((resolve, reject)=>{
     bcrypt.compare(password, this.password, (err, isMatch)=>{
-      console.log("isMatch:", isMatch)
       if (err) {
         reject(err)
       } else {
