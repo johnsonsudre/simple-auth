@@ -2,6 +2,8 @@ const express = require('express')
 const router = express.Router()
 const User = require('../models/user')
 
+const roles = ['admin', 'normal']
+
 router.use((req, res, next) => {
   if ("user" in req.session) {
     return next();
@@ -13,7 +15,15 @@ router.use((req, res, next) => {
 router.get('/',async (req,res)=>{
     const rootname=req.session.user.username
     const users = await User.find()
-    res.render('admin',{rootname:rootname, users: users.map(user=>user.username),user: req.session.user.username})
+    res.render('admin',{
+      rootname, 
+      roles, 
+      users: users.map(user=>user.username),
+      user: {
+        username: req.session.user.username,
+        roles: req.session.user.roles
+      }
+    } )
 })
 
 router.get('/userRemove',async (req,res)=>{
@@ -33,14 +43,15 @@ router.post('/',async (req,res)=>{
     if (req.body.username) { // add new user
       const newuser = new User({
         username:req.body.username,
-        password:req.body.password
+        password:req.body.password,
+        roles:req.body.roles
       })
       await newuser.save(()=>{
         console.log('new user added')
         res.redirect('/admin')
       })
     }
-    if (req.body.userToRemove) {
+    if (req.body.userToRemove) { // remove user
       const userToRemove = await User.findOne({username:req.body.userToRemove})
       if (userToRemove) {
         await userToRemove.remove(()=>{
