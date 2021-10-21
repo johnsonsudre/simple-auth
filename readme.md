@@ -4,6 +4,12 @@
 
 This is a small backend project to exercise a auth approach that uses express, express-session, mongodb, mongoose, bootstrap, bcrypt and ejs.
 
+## How does this work?
+
+Initially the app test if the db contain the root user, if not exist hes is created with the password "123". This user dont modify this name "root" and your role is defined as "root". From user root other users can be created (and removed) with the roles ["admin", "normal"]. Admin users can be create and remove others users too, but hes dont get modify the root user. Normal users only view the list of users.
+
+## Admin page
+
 ![](./public/admin.JPG)
 
 ## Getting Started

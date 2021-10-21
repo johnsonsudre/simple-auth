@@ -12,7 +12,7 @@ router.use((req, res, next) => {
 
 router.get("/", (req, res) => {
   if (!("user" in req.session)) {
-    res.render("login");
+    res.render("login",{page:"login"});
   } else {
     res.redirect("/projects");
   }

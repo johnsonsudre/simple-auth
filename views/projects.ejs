@@ -3,21 +3,8 @@
       <h1 class="card-title">
         <i class="icon ion-android-people pr-3"></i>Usuários
       </h1>
-      <h6 class="card-subtitle mb-2 text-muted">
-        Lista de pessoas cadastradas:
-      </h6>
-      <div  style="width: 320px;" class="card">
-        <div class="card-body">
-            <% users.map((user, i) => { %> 
-              <% if ( i > 0)  { %>
-                <form method="post" class="login-dark">
-                  <div class="form-group mb-1">
-                    <%= user %>
-                  </div>
-                </form>
-              <% } %> 
-            <% }) %> 
-        </div>
+      <div style="width: 520px;">
+        <%- include('./partials/users_list.ejs') %>
       </div>
     </div>
 <%- include('./partials/footer.ejs') %>

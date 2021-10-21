@@ -18,11 +18,12 @@ router.get('/',async (req,res)=>{
     res.render('admin',{
       rootname, 
       roles, 
-      users: users.map(user=>user.username),
+      users: users.map(user=>user),
       user: {
         username: req.session.user.username,
         roles: req.session.user.roles
-      }
+      },
+      page:"admin",
     } )
 })
 

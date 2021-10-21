@@ -16,15 +16,21 @@
   </head>
 
   <body>
+    <% if (page!=="login") { %> 
     <nav class="navbar navbar-light bg-light justify-content-between">
       <div>
         <i class="icon ion-person" class="pr-3"></i>
         <a class="pr-3"><%= user.username %> </a>
       </div>
       <div>
-        <% if (user.roles.filter((role)=>['root','admin'].indexOf(role)>=0).length) { %>
+        <% if (['admin'].indexOf(page)>=0) { %>
+          <a href="/" class="btn btn-primary">Voltar</a>
+          <% } 
+          if (['projects'].indexOf(page)>=0) { 
+            if (user.roles.filter((role)=>['root','admin'].indexOf(role)>=0).length) { %>
         <a href="/admin" class="btn btn-primary">Admin</a>
-        <% } %>
+        <% }} %>
         <a href="/logout" class="btn btn-primary">Sair</a>
       </div>
     </nav>
+    <% } %> 
