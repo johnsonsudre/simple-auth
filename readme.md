@@ -4,6 +4,8 @@
 
 This is a small backend project to exercise a auth approach that uses express, express-session, mongodb, mongoose, bootstrap, bcrypt and ejs.
 
+![](./public/admin.JPG)
+
 ## Getting Started
 
 ### Dependencies
