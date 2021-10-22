@@ -16,21 +16,47 @@
   </head>
 
   <body>
-    <% if (page!=="login") { %> 
-    <nav class="navbar navbar-light bg-light justify-content-between">
-      <div>
-        <i class="icon ion-person" class="pr-3"></i>
-        <a class="pr-3"><%= user.username %> </a>
-      </div>
-      <div>
-        <% if (['admin'].indexOf(page)>=0) { %>
-          <a href="/" class="btn btn-primary">Voltar</a>
-          <% } 
-          if (['projects'].indexOf(page)>=0) { 
-            if (user.roles.filter((role)=>['root','admin'].indexOf(role)>=0).length) { %>
-        <a href="/admin" class="btn btn-primary">Admin</a>
-        <% }} %>
-        <a href="/logout" class="btn btn-primary">Sair</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/"><img src="digital-key.png" width="32" height="32" alt=""></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle btn btn-outline-primary" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="icon ion-person pr-2"></i><%= user ? user.username : "Visitante" %>
+            </a>
+            <% if (user) {%> 
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <% user.roles.map(role=>{ %>
+                <a class="dropdown-item" href="#"><%= role %> </a>
+              <% }) %> 
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Sair</a>
+            </div>
+            <% } %> 
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/content">Conteúdo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="/projects" tabindex="-1" aria-disabled="true">+Mais</a>
+          </li>
+        </ul>
+        <div class="d-inline-flex my-2 my-lg-0">
+          <% if (!user) { %> 
+            <a href="/login" class="btn btn-outline-primary my-2 my-sm-0">Entrar</a>
+            <% } %> 
+          <% if (user && user.roles.indexOf("admin")>=0 && page!=="admin") { %> 
+          <a href="/admin" class="btn btn-outline-primary my-2 my-sm-0 mr-sm-2">Admin</a>
+          <% } %> 
+          <% if (["admin","projects", "content"].indexOf(page)>=0) { %> 
+          <a href="/" class="btn btn-outline-primary my-2 my-sm-0 mr-sm-2">Voltar</a>
+          <% } %> 
+          <% if (user) { %> 
+          <a href="/logout" class="btn btn-outline-primary my-2 my-sm-0">Sair</a>
+          <% } %>
+        </div>
       </div>
     </nav>
-    <% } %> 

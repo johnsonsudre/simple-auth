@@ -6,25 +6,29 @@ const roles = ['admin', 'normal']
 
 router.use((req, res, next) => {
   if ("user" in req.session) {
-    return next();
+    if (req.session.user.roles.indexOf('admin')>=0) {
+      return next();
+    } else {
+      res.redirect("/");
+    }
   } else {
-    res.redirect("/");
+    res.redirect("/login");
   }
 });
 
 router.get('/',async (req,res)=>{
-    const rootname=req.session.user.username
-    const users = await User.find()
-    res.render('admin',{
-      rootname, 
-      roles, 
-      users: users.map(user=>user),
-      user: {
-        username: req.session.user.username,
-        roles: req.session.user.roles
-      },
-      page:"admin",
-    } )
+  const users = await User.find()
+  res.render('admin',{
+    roles, 
+    users: users.map(user=>{
+      return { username:user.username, roles:user.roles }
+    }),
+    user: {
+      username: req.session.user.username,
+      roles: req.session.user.roles
+    },
+    page:"admin",
+  } )
 })
 
 router.get('/userRemove',async (req,res)=>{

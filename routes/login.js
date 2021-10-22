@@ -1,16 +1,26 @@
-const express = require("express");
-const session = require("express-session");
+const express = require('express')
+const router = express.Router()
 const User = require("../models/user")
 
-const router = express.Router();
+router.get('/',async (req,res)=>{
+  res.render('login', { page:"login" })
+})
 
-router.get("/", async (req, res) => {
-  const users = await User.find()
-  res.render("login", { 
-    page: "login",
-    users: users.map(user=>user),
-    user: {
-      username: req.session.user.username,
-      roles: req.session.user.roles
-    } });
+router.post("/", async (req, res) => {
+  const user = await User.findOne({ username: req.body.username });
+  console.log(req.body)
+  if (user) {
+    console.log("user found")
+    const isAuth = await user.checkAppUser(req.body.password);
+    if (isAuth) {
+      console.log("user authenticated")
+      req.session.user = user;
+      req.session.role = user.roles[0];
+      res.redirect("/projects");
+    } else {
+      res.redirect("/login");
+    }
+  }
 });
+
+module.exports = router

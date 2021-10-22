@@ -8,7 +8,7 @@
         mt-5
       "
     >
-      <% if (user.roles[0]==='root') { %> 
+      <% if (user.username==='root') { %> 
       <div class="card mx-5" style="width: 18rem;">
         <div class="card-body">
           <h5 class="card-title">
@@ -19,7 +19,7 @@
           </h6>
           <form method="post" class="login-dark">
             <h6>
-              <%= rootname %>
+              <%= user.username %>
             </h6>
             
             <div class="form-group">
