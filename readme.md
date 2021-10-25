@@ -10,8 +10,13 @@ Initially the app test if the db contain the root user, if not exist hes is crea
 
 ## Admin page
 
-<img src="./public/screens.jpg">
-<img src="./public/admin.jpg">
+<img src="./public/screens.png" style="display: block;
+  margin-left: auto;
+  margin-right: auto;">
+<img src="./public/admin-screen.jpg" style="display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;">
 
 ## Getting Started
 
