@@ -25,15 +25,15 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item dropdown active">
             <a class="nav-link dropdown-toggle btn btn-outline-primary" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="icon ion-person pr-2"></i><%= user ? user.username : "Visitante" %>
+              <i class="icon ion-person pr-2"></i><%= user ? user.username : "Visitante" %> <%= role ? "["+role+"]" : "" %>
             </a>
             <% if (user) {%> 
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <% user.roles.map(role=>{ %>
-                <a class="dropdown-item" href="#"><%= role %> </a>
+                <a class="dropdown-item" href="/auth/change_role/<%= role %>"><%= role %> </a>
               <% }) %> 
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Sair</a>
+              <a class="dropdown-item" href="/logout">Sair</a>
             </div>
             <% } %> 
           </li>
@@ -41,14 +41,14 @@
             <a class="nav-link" href="/content">Conteúdo</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="/projects" tabindex="-1" aria-disabled="true">+Mais</a>
+            <a class="nav-link <% if (!user) { %> disabled<% } %>" href="/projects" tabindex="-1" aria-disabled="true">+Mais</a>
           </li>
         </ul>
         <div class="d-inline-flex my-2 my-lg-0">
           <% if (!user) { %> 
             <a href="/login" class="btn btn-outline-primary my-2 my-sm-0">Entrar</a>
             <% } %> 
-          <% if (user && user.roles.indexOf("admin")>=0 && page!=="admin") { %> 
+          <% if (role==="admin" && page!=="admin") { %> 
           <a href="/admin" class="btn btn-outline-primary my-2 my-sm-0 mr-sm-2">Admin</a>
           <% } %> 
           <% if (["admin","projects", "content"].indexOf(page)>=0) { %> 

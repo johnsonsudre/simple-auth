@@ -15,7 +15,7 @@ const content = require("./routes/content");
 const projects = require("./routes/projects");
 const admin = require("./routes/admin");
 const auth = require("./routes/auth");
-const index = require("./routes/index");
+const cover = require("./routes/cover");
 const login = require("./routes/login");
 
 app.set("views", path.join(__dirname, "views"));
@@ -29,6 +29,7 @@ app.use(session({ secret: "simple-auth"}));
 app.use((req, res, next) => {
   res.locals.user = req.session.user;
   res.locals.role = req.session.role;
+  res.locals.page = "cover";
   next();
 });
 
@@ -37,7 +38,7 @@ app.use("/content", content);
 app.use("/projects", projects);
 app.use("/admin", admin);
 app.use("/auth", auth);
-app.use("/", index);
+app.use("/", cover);
 
 
 app.get("/logout", (req, res) => {
@@ -52,7 +53,7 @@ const checkRootUser = async () => {
     const user = new User({
       username: "root",
       password: "123",
-      roles: ['admin']
+      roles: ['admin', 'normal']
     });
     await user.save(() => console.log("root user created"));
   }

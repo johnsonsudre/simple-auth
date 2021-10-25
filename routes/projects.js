@@ -2,7 +2,9 @@ const express = require('express')
 const router = express.Router()
 const User = require("../models/user")
 
+
 router.use((req, res, next) => {
+  res.locals.page = "projects";
   if ("user" in req.session) {
     return next();
   } else {

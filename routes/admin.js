@@ -5,6 +5,7 @@ const User = require('../models/user')
 const roles = ['admin', 'normal']
 
 router.use((req, res, next) => {
+  res.locals.page = "admin";
   if ("user" in req.session) {
     if (req.session.user.roles.indexOf('admin')>=0) {
       return next();

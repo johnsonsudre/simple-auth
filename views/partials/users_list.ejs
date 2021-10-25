@@ -1,18 +1,21 @@
 <div class="card b-2" style="width: inherit;">
   <div class="card-body">
     <h6 class="card-title">
-      <i class="icon ion-android-people pr-3"></i>Usuários
+      <i class="icon ion-android-people pr-3"></i>Pessoas cadastradas
     </h6>
     <h6 class="card-subtitle mb-2 text-muted">
       Lista de pessoas cadastradas:
     </h6>
     <hr/>
+    <% if (users.length-1===0) { %> 
+      Nenhuma pessoa cadastrada.
+    <% } %> 
     <% users.map((userApp, i) => { if ( i > 0) { %>
       <form method="post" class="login-dark">
         <div class="form-group mb-1">
         <%= userApp.username %>
         <% if (page==="admin") { %> 
-        <% if (user.roles.filter((role)=>['root','admin'].indexOf(role)>=0).length) { %>
+        <% if (user.roles.indexOf("admin")>=0) { %>
         <button
           name="userToRemove"
           value="<%= userApp.username %>"
