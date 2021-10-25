@@ -4,9 +4,10 @@ const User = require("../models/user")
 
 
 router.use((req, res, next) => {
+  console.log("projects role :",req.session.role)
   res.locals.page = "projects";
   if ("user" in req.session) {
-    return next();
+    if (req.session.role === "admin") {return next();}
   } else {
     res.redirect("/login");
   }

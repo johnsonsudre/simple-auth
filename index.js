@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require("express");
 const session = require("express-session");
 const mongoose = require("mongoose");
@@ -6,7 +7,8 @@ const path = require("path");
 const User = require("./models/user");
 
 mongoose.Promise = global.Promise;
-const mongoURI = process.env.MONGODB || "mongodb://localhost:27017/bitgol_users";
+// const mongoURI = process.env.MONGODB || "mongodb://localhost:27017/bitgol_users";
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/simple-auth-users'
 const port = process.env.PORT || 3000;
 
 const app = express();
@@ -60,7 +62,7 @@ const checkRootUser = async () => {
 };
 
 mongoose
-  .connect(mongoURI)
+  .connect(MONGODB_URI)
   .then(() => {
     console.log("database connected");
     checkRootUser();
