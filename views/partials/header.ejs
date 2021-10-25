@@ -42,22 +42,24 @@
           <li class="nav-item">
             <a class="nav-link" href="/content">Conteúdo</a>
           </li>
+          <% if (role==="admin") { %>
           <li class="nav-item">
-            <a class="nav-link <% if (!user) { %> disabled<% } %>" href="/projects" tabindex="-1" aria-disabled="true">+Mais</a>
+            <a class="nav-link" href="/projects" tabindex="-1" aria-disabled="true">Lista de pessoas</a>
           </li>
+          <% } %>
         </ul>
         <div class="d-inline-flex my-2 my-lg-0">
           <% if (!user) { %> 
-            <a href="/login" class="btn btn-outline-primary my-2 my-sm-0">Entrar</a>
+            <a href="/login" class="btn btn-outline-primary ml-2">Entrar</a>
             <% } %> 
           <% if (role==="admin" && page!=="admin") { %> 
-          <a href="/admin" class="btn btn-outline-primary my-2 my-sm-0 mr-sm-2">Admin</a>
+          <a href="/admin" class="btn btn-outline-primary ml-2">Admin</a>
           <% } %> 
           <% if (["admin","projects", "content"].indexOf(page)>=0) { %> 
-          <a href="/" class="btn btn-outline-primary my-2 my-sm-0 mr-sm-2">Voltar</a>
+          <a href="/" class="btn btn-outline-primary ml-2">Voltar</a>
           <% } %> 
           <% if (user) { %> 
-          <a href="/logout" class="btn btn-outline-primary my-2 my-sm-0">Sair</a>
+          <a href="/logout" class="btn btn-outline-primary ml-2">Sair</a>
           <% } %>
         </div>
       </div>
