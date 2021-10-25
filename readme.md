@@ -10,7 +10,8 @@ Initially the app test if the db contain the root user, if not exist hes is crea
 
 ## Admin page
 
-![](./public/admin.JPG)
+<img src="./public/screens.jpg">
+<img src="./public/admin.jpg">
 
 ## Getting Started
 
@@ -27,8 +28,9 @@ Initially the app test if the db contain the root user, if not exist hes is crea
 
 ### Installing
 
-* Download, install and run [NoSQLBooster for MongoDB](https://nosqlbooster.com/downloads)
-* Clone this project
+- Download, install and run [NoSQLBooster for MongoDB](https://nosqlbooster.com/downloads)
+- Clone this project
+
 ```
 git clone https://github.com/johnsonsudre/simple-auth.git
 npm install
@@ -50,7 +52,6 @@ Contributors names and contact info
 
 [johnsonsudre](https://github.com/johnsonsudre/)
 
-
 ## License
 
 This project is licensed under the MIT License.
@@ -58,4 +59,5 @@ This project is licensed under the MIT License.
 ## Acknowledgments
 
 Inspiration, code snippets, etc.
-* [Curso DevPleno](https://go.devpleno.com/fsm)
+
+- [Curso DevPleno](https://go.devpleno.com/fsm)
