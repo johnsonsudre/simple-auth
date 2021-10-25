@@ -1,7 +1,73 @@
 <%- include('./partials/header.ejs') %>
-    <div class="d-flex flex-column flex-grow-1 justify-content-center align-items-center">
+    <!-- <div class="d-flex flex-column flex-grow-1 justify-content-center align-items-center">
       <h1 class="card-title">
         <i class="icon ion-book-outline pr-3"></i>Conteúdo
       </h1>
-    </div>
+    </div> -->
+
+
+
+
+
+
+
+
+  
+      <main>
+  
+        <section class="jumbotron text-center text-white" style="background:rgba(0,0,255,0.5) !important">
+          <div class="container">
+            <h1 class="jumbotron-heading">Conteúdo</h1>
+            <p class="lead text-white">Algo curto e direto, sobre a coleção abaixo (conteúdo, criador e etc). Faça com que seja curto e legal, mas não tão curto ao ponto de as pessoas pularem ele.</p>
+          </div>
+        </section>
+  
+        <div class="album py-5 bg-light">
+          <div class="container">
+  
+            <div class="row">
+              <% for (i=0;i<10;i++) { %> 
+              <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                  <div class="card-body">
+                    <p class="card-text">Este é um card maior e que suporta texto abaixo, como uma introdução mais natural ao conteúdo adicional.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-primary">Ver</button>
+                        <button type="button" class="btn btn-sm btn-outline-primary">Editar</button>
+                      </div>
+                      <small class="text-muted">9 mins</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                  <div class="card-body">
+                    <p class="card-text"></p>
+                    <p class="card-text">Este é um card maior e que suporta texto abaixo, como uma introdução mais natural ao conteúdo adicional. No entanto, esse conteúdo é um pouco maior.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-primary">Ver</button>
+                        <button type="button" class="btn btn-sm btn-outline-primary">Editar</button>
+                      </div>
+                      <small class="text-muted">9 mins</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <% } %> 
+            </div>
+          </div>
+        </div>
+  
+      </main>
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+
+
+
+
+
+    
 <%- include('./partials/footer.ejs') %>
