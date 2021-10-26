@@ -4,13 +4,12 @@ const User = require("../models/user")
 
 router.use((req,res, next)=>{
   res.locals.page = "login";
-  res.locals.loginError = "";
   next();
 })
 
 
 router.get('/',async (req,res)=>{
-  res.render('login', { page:"login" })
+  res.render('login', { page:"non" })
 })
 
 router.post("/", async (req, res) => {
@@ -23,12 +22,14 @@ router.post("/", async (req, res) => {
       req.session.role = user.roles[0];
       res.redirect("/projects");
     } else {
-      req.session.err = "Senha inválida.";
-      res.redirect("/login?error=Senha inválida");
+      console.log("Senha invalida")
+      res.locals.err = "Senha inválida.";
+      res.redirect("/login?err=Senha inválida");
     }
   } else {
-    req.session.err = "Pessoa não cadastrada.";
-    res.redirect("/login?error=Pessoa não cadastrada.");
+    console.log("Pessoa nao encontrada")
+    res.locals.err = "Pessoa não cadastrada.";
+    res.redirect("/login?err=Pessoa não cadastrada.");
   }
 });
 

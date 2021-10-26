@@ -26,10 +26,10 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item dropdown active">
-            <a class="nav-link dropdown-toggle btn btn-outline-primary" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="icon ion-person pr-2"></i><%= user ? user.username : "Visitante" %> <%= role ? "["+role+"]" : "" %>
-            </a>
             <% if (user) {%> 
+            <a class="nav-link dropdown-toggle btn btn-outline-primary" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="icon ion-person pr-2"></i><%= user.username %> <%= role ? "["+role+"]" : "" %>
+            </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <% user.roles.map(role=>{ %>
                 <a class="dropdown-item" href="/auth/change_role/<%= role %>"><%= role %> </a>
@@ -37,6 +37,12 @@
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="/logout">Sair</a>
             </div>
+            <% } else { %> 
+              <li class="nav-item">
+                <a class="nav-link icon ion-person pr-2">
+                  Visitante
+                </a>
+              </li>
             <% } %> 
           </li>
           <li class="nav-item">
@@ -46,7 +52,7 @@
           <li class="nav-item">
             <a class="nav-link" href="/projects" tabindex="-1" aria-disabled="true">Lista de pessoas</a>
           </li>
-          <% } %>
+          <% } %> 
         </ul>
         <div class="d-inline-flex my-2 my-lg-0">
           <% if (!user) { %> 
