@@ -32,6 +32,7 @@ app.use((req, res, next) => {
   res.locals.user = req.session.user;
   res.locals.role = req.session.role;
   res.locals.page = "cover";
+  res.locals.err = "";
   next();
 });
 

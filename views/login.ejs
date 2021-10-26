@@ -28,6 +28,13 @@
             placeholder="Senha"
           />
         </div>
+        <%= err %>
+        <% if (err!=="") {%>
+          <div class="form-group text-danger">
+            <%= err %>
+          </div>
+          <% } %> 
+        
         <div class="form-group">
           <button class="btn btn-primary btn-block" type="submit">Log In</button>
         </div>

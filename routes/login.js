@@ -4,6 +4,7 @@ const User = require("../models/user")
 
 router.use((req,res, next)=>{
   res.locals.page = "login";
+  res.locals.loginError = "";
   next();
 })
 
@@ -22,8 +23,12 @@ router.post("/", async (req, res) => {
       req.session.role = user.roles[0];
       res.redirect("/projects");
     } else {
-      res.redirect("/login");
+      req.session.err = "Senha inválida.";
+      res.redirect("/login?error=Senha inválida");
     }
+  } else {
+    req.session.err = "Pessoa não cadastrada.";
+    res.redirect("/login?error=Pessoa não cadastrada.");
   }
 });
 
