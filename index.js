@@ -45,6 +45,7 @@ app.use("/", cover);
 
 
 app.get("/logout", (req, res) => {
+  console.log(req.session.user.username,"...bye")
   req.session.destroy(() => {
     res.redirect("/");
   });

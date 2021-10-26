@@ -32,10 +32,6 @@ router.get('/',async (req,res)=>{
   } )
 })
 
-router.get('/userRemove',async (req,res)=>{
-  res.redirect('/admin')
-})
-
 router.post('/',async (req,res)=>{
   if (req.body) {
     const user = await User.findOne({username:req.session.user.username})
