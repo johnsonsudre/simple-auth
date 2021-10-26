@@ -9,12 +9,12 @@ router.use((req,res, next)=>{
 
 
 router.get('/',async (req,res)=>{
-  res.render('login', { page:"non" })
-})
+  res.render('login', { page:"login" })
+})  
 
 router.post("/", async (req, res) => {
   const user = await User.findOne({ username: req.body.username });
-  if (user) {
+  if (user!==null) {
     const isAuth = await user.checkAppUser(req.body.password);
     if (isAuth) {
       console.log("welcome ",user.username)
@@ -22,14 +22,12 @@ router.post("/", async (req, res) => {
       req.session.role = user.roles[0];
       res.redirect("/projects");
     } else {
-      console.log("Senha invalida")
-      res.locals.err = "Senha inválida.";
-      res.redirect("/login?err=Senha inválida");
+      req.session.err = "Senha inválida.";
+      res.redirect("/login");
     }
   } else {
-    console.log("Pessoa nao encontrada")
-    res.locals.err = "Pessoa não cadastrada.";
-    res.redirect("/login?err=Pessoa não cadastrada.");
+    req.session.err = "Pessoa não cadastrada.";
+    res.redirect("/login");
   }
 });
 

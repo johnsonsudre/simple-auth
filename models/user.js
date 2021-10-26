@@ -41,9 +41,7 @@ UserSchema.methods.checkAppUser = function(password) {
       if (err) {
         reject(err)
       } else {
-        if (isMatch) {
-          resolve(isMatch)
-        }
+        resolve(isMatch)
       }
     })
   })
